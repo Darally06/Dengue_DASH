@@ -15,7 +15,7 @@ conexion = psycopg2.connect(
     password="Darally",
     port="5432"
 )
-
+#Holis
 query = "SELECT * FROM base_dengue_raw;"
 df = pd.read_sql(query, conexion)
 
