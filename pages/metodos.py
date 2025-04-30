@@ -5,8 +5,10 @@ def layout(df):
         dcc.Tabs([
             dcc.Tab(label='Definición del problema', children=[
                 html.Div([
-                    html.H3('Metodología General', style={'color': '#4B70F5', 'fontFamily': 'Poppins'}),
-                    html.P('Aquí describes la metodología general del proyecto.', style={'fontFamily': 'Lato', 'fontSize': '18px'})
+                    html.H3('Metodología General', 
+                            style={'color': '#4B70F5', 'fontFamily': 'Poppins'}),
+                    html.P('Aquí describes la metodología general del proyecto.', 
+                           style={'fontFamily': 'Lato', 'fontSize': '18px'})
                 ])
             ]),
             dcc.Tab(label='Preparación de Datos', children=[

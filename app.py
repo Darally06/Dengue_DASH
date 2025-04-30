@@ -21,7 +21,7 @@ df = pd.read_sql(query, conexion)
 conexion.close()
 
 df = change_df.ajustar_variables(df)
-print(df.info())
+df.to_csv("data/dengue.csv", index=False)
 
 # DASH
 # Diseño
@@ -53,5 +53,5 @@ app.layout = html.Div([
     ])
 ])
 
-#if __name__ == '__main__':
- #   app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
