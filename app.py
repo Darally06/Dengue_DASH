@@ -5,7 +5,7 @@ import dash
 from dash import dcc, html
 import pandas as pd 
 import psycopg2
-from pages import metodos, resultados, text_tabs
+from pages import metodos, resultados, text_tabs, change_df
 
 ## Conexion a la base de datos
 conexion = psycopg2.connect(
@@ -18,8 +18,10 @@ conexion = psycopg2.connect(
 #Holis
 query = "SELECT * FROM base_dengue_raw;"
 df = pd.read_sql(query, conexion)
+conexion.close()
 
-
+df = change_df.ajustar_variables(df)
+print(df.info())
 
 # DASH
 # Diseño
@@ -51,5 +53,5 @@ app.layout = html.Div([
     ])
 ])
 
-if __name__ == '__main__':
-    app.run(debug=True)
+#if __name__ == '__main__':
+ #   app.run(debug=True)

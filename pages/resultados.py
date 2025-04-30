@@ -2,7 +2,6 @@ from dash import html, dcc
 import pandas as pd
 
 def eda(df):
-    print(df.info())
     return html.Div([
         html.Div([
             dcc.Tabs([
