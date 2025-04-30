@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: dataviz-docker
+    env: docker
+    plan: free
+    branch: main
+    repo: # Cambiar repo
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
+    

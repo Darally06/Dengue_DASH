@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
+
+/* Fondo general */
+body {
+    background-color: #f8f9fa; /* Blanco suave */
+    font-family: 'Lato', sans-serif;
+    color: #212529;
+    margin: 0;
+}
+
+/* Títulos */
+h1, h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #4B70F5;
+}
+
+/* Subtítulos */
+h3, h4 {
+    font-family: 'Open Sans', sans-serif;
+    color: #212529;
+}
+
+/* Contenedores */
+.tab-content {
+    background-color: white;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Botones o elementos de acción */
+.button {
+    background-color: #4B70F5;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.button:hover {
+    background-color: #3D3BF3;
+    cursor: pointer;
+}
