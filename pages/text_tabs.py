@@ -12,7 +12,7 @@ def texto_tab1():
         html.P('El propósito de este dashboard es explorar, visualizar y entender la distribución y características de los casos de dengue en Colombia, '
                'utilizando datos históricos y demográficos para identificar patrones relevantes.', 
                style={'fontFamily': 'Lato', 'fontSize': '18px'}),
-        html.p('Aquí se presenta una visión general del contexto de la problemática, el análisis realizado y los hallazgos encontrados.',
+        html.P('Aquí se presenta una visión general del contexto de la problemática, el análisis realizado y los hallazgos encontrados.',
                 'De manera resumida, indicar lo que se pretende lograr con el proyecto')
     ])
 
