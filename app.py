@@ -32,24 +32,24 @@ app.layout = html.Div([
     dcc.Tabs([
         dcc.Tab(label='Introducción', children=[
             text_tabs.texto_tab1()
-        ]),
+        ],style={'font-weight': 'bold'}),
         dcc.Tab(label='Contexto', children=[
             text_tabs.texto_tab2()
-        ]),
+        ],style={'font-weight': 'bold'}),
         dcc.Tab(label='Planteamiento del problema', children=[
             text_tabs.texto_tab3()
-        ]),
+        ],style={'font-weight': 'bold'}),
         dcc.Tab(label='Objetivos y justificación', children=[
             text_tabs.texto_tab4()
-        ]),
+        ],style={'font-weight': 'bold'}),
         dcc.Tab(label='Marco teórico', children=[
-            html.Div("Contenido Tab 5")
-        ]),
-        dcc.Tab(label='Metodología', children = metodos.layout(df)),
-        dcc.Tab(label='Resultados y análisis', children = resultados.layout(df)),
+            text_tabs.texto_tab5()
+        ],style={'font-weight': 'bold'}),
+        dcc.Tab(label='Metodología', children = metodos.layout(df),style={'font-weight': 'bold'}),
+        dcc.Tab(label='Resultados y análisis', children = resultados.layout(df),style={'font-weight': 'bold'}),
         dcc.Tab(label='Conclusiones', children = [
             text_tabs.texto_tab8()
-        ]),
+        ],style={'font-weight': 'bold'}),
     ])
 ])
 

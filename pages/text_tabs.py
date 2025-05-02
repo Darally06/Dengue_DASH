@@ -12,26 +12,32 @@ def texto_tab1():
         html.P('El propósito de este dashboard es explorar, visualizar y entender la distribución y características de los casos de dengue en Colombia, '
                'utilizando datos históricos y demográficos para identificar patrones relevantes.', 
                style={'fontFamily': 'Lato', 'fontSize': '18px'}),
+        html.p('Aquí se presenta una visión general del contexto de la problemática, el análisis realizado y los hallazgos encontrados.',
+                'De manera resumida, indicar lo que se pretende lograr con el proyecto')
     ])
 
 def texto_tab2():
     return """
-    Explicación detallada de la pestaña 2, comparaciones de años, etc.
+    Contexto sobre el dengue en Colombia, incluyendo su epidemiología y factores de riesgo.
+    Descripcion breve del contexto del proyecto, fuente de los datoa y nombre, variables de intetes y operacionalizacion
     """
 
 def texto_tab3():
     return """
-    Información sobre la distribución espacial del dengue en Colombia.
+    Planteamiento del problema: la necesidad de un análisis exhaustivo de los datos de dengue en Colombia para mejorar la respuesta sanitaria.
+    Describe la problematica abordada-
+    Pregunta problema: ¿Cual es la pregunta que se quiere responder con el analisis?
     """
 
 def texto_tab4():
     return """
-    Análisis de tendencias temporales de casos reportados.
+    Objetivos y justificación del análisis: comprender la distribución de los casos de dengue y su relación con factores demográficos y geográficos.
     """
 
 def texto_tab5():
     return """
-    Distribución por sexo, edad y área de residencia.
+    Marco teórico: conceptos clave sobre el dengue, su transmisión y factores de riesgo asociados.
+    Resumen de conceptos teoricos (definiciones formales), referencias.
     """
 
 def texto_tab8():
