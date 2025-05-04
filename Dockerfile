@@ -1,17 +1,17 @@
-FROM python:3.10-slim
+# Usa una imagen oficial de Python
+FROM python:3.12-slim
 
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
+# Establece el directorio de trabajo
 WORKDIR /app
 
+# Copia los archivos al contenedor
 COPY . .
-COPY pages ./pages
 
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Instala las dependencias
+RUN pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 8501
+# Expone el puerto que usa Dash por defecto
+EXPOSE 8050
 
-ENTRYPOINT ["streamlit", "run"]
-CMD ["app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+# Comando para ejecutar la app
+CMD ["python", "app.py"]

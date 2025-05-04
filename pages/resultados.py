@@ -80,7 +80,12 @@ def layout(df):
                 }),
             ]),
             dcc.Tab(label='Limitaciones', children=[
-                html.Div('Aquí', style={'marginTop': '20px'})
+                html.Div([
+                    html.H4("Limitaciones del modelo", style={'textAlign': 'center'}),
+                    html.P('1. Desbalance de clases: A pesar de aplicar SMOTE, el desbalance de clases puede afectar la capacidad del modelo para generalizar.'\
+                            '2. El tiempo de ejecución es considerablemente alto, lo que puede dificultar la implementación en tiempo real.',
+                            style={'fontFamily': 'Lato', 'fontSize': '18px'}),
+                ])
             ]),
         ])
     ])

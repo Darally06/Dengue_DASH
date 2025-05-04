@@ -99,3 +99,8 @@ h3, h4 {
     color: #555;
     padding-top: 20px;
 }
+
+/*Links*/
+.nav-link {
+    color: #4B70F5; /* Color nuevo para los enlaces */
+}

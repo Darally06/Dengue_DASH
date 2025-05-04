@@ -23,8 +23,12 @@ def register(app, df):
                 yaxis_title="Frecuencia",
                 height=650,
                 margin=dict(l=20, r=20, t=50, b=50),
-                title_font=dict(size=18, family='Arial', color='black')
+                title_font=dict(size=18, family='Lato', color='black'),
+                xaxis=dict(showgrid=False),  # Ocultar cuadrícula en eje X
+                yaxis=dict(showgrid=False),  # Ocultar cuadrícula en eje Y
+                plot_bgcolor="white"
             )
+            fig_edad.update_traces(marker=dict(color="dodgerblue"))
 
             # Gráfico de pastel para sexo
             sexo_data = df["SEXO_NUM"].replace({0: "Mujer", 1: "Hombre"}).value_counts().reset_index()
@@ -34,13 +38,12 @@ def register(app, df):
                 names='Sexo',
                 values='Cantidad',
                 title='Distribución por Sexo',
-                color_discrete_sequence=px.colors.sequential.Blues_r
+                color_discrete_sequence=["#F54B70", "#4B70F5"]
             )
             fig_sexo.update_traces(
                 textposition='inside',
                 textinfo='percent+label',
                 pull=[0.02]*len(sexo_data),
-                marker=dict(line=dict(color='#000000', width=1)),
                 sort=False
             )
             fig_sexo.update_layout(
@@ -58,13 +61,12 @@ def register(app, df):
                 names='Área',
                 values='Cantidad',
                 title='Distribución por Área',
-                color_discrete_sequence=px.colors.sequential.Blues_r
+                color_discrete_sequence=["#4B70F5", "#0D3CE7", "#93AAF9"]
             )
             fig_area.update_traces(
                 textposition='inside',
                 textinfo='percent+label',
                 pull=[0.02]*len(area_data),
-                marker=dict(line=dict(color='#000000', width=1)),
                 sort=False
             )
             fig_area.update_layout(
@@ -80,8 +82,8 @@ def register(app, df):
             seguro_data.columns = ["Tipo de Seguro", "Cantidad"]
             fig_seguro = px.bar(seguro_data, x="Cantidad", y="Tipo de Seguro", orientation='h',
                                 title="Distribución por Tipo de Seguro",
-                                color_discrete_sequence=["#4B9CD3"])
-            fig_seguro.update_layout(yaxis_title="", xaxis_title="Cantidad")
+                                color_discrete_sequence=["#4B70f5"])
+            fig_seguro.update_layout(yaxis_title="", xaxis_title="Cantidad", plot_bgcolor="white")
 
             return html.Div([
             html.Div([
@@ -230,7 +232,7 @@ def register(app, df):
                 x=top5_dptos.values,
                 y=top5_dptos.index,
                 orientation='h',
-                marker=dict(color='royalblue')
+                marker=dict(color='#0D3CE7')
             ))
             fig_dptos.update_layout(
                 title="Top 5 Departamentos con más casos",
@@ -248,7 +250,7 @@ def register(app, df):
                 x=top5_muns.values,
                 y=top5_muns.index,
                 orientation='h',
-                marker=dict(color='cornflowerblue')
+                marker=dict(color='#4B70F5')
             ))
             fig_muns.update_layout(
                 title="Top 5 Municipios con más casos",
@@ -319,12 +321,11 @@ def register(app, df):
                 df_tipo_caso,
                 x="ANO",
                 y="Frecuencia",
-                color="TIP_CAS",
                 markers=True,
                 title="Tipo de Caso por Año",
                 labels={"ANO": "Año", "Frecuencia": "Número de Casos", "TIP_CAS": "Tipo de Caso"},
-                color_discrete_sequence=px.colors.qualitative.Set1
             )
+            fig_tip_cas.update_traces(line=dict(color="#1b4af2"))
             fig_tip_cas.update_layout(
                 template="plotly_white",
                 hovermode="x unified",
@@ -349,7 +350,7 @@ def register(app, df):
                     'Frecuencia': 'Pacientes Hospitalizados',
                     'SEXO_L': 'Sexo'
                 },
-                color_discrete_map={'Hombre': 'blue', 'Mujer': 'indianred'}
+                color_discrete_map={'Hombre': '#4B70F5', 'Mujer': '#F54B70'}
             )
 
             fig_hosp_sex.update_layout(
@@ -369,7 +370,7 @@ def register(app, df):
                 y="Decesos",
                 title="Decesos por Año",
                 labels={"ANO": "Año", "Decesos": "Número de Fallecimientos"},
-                color_discrete_sequence=["royalblue"]
+                color_discrete_sequence=["dodgerblue"]
             )
             fig_decesos.update_layout(
                 template="plotly_white",
