@@ -1,26 +1,73 @@
+/* Importación de fuentes */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato&family=Open+Sans:wght@400;700&family=Poppins:wght@600&display=swap');
 
-/* Fondo general */
+/* ========== ESTILO GENERAL ========== */
+
 body {
-    background-color: #f8f9fa; /* Blanco suave */
-    font-family: 'Lato', sans-serif;
+    background-color: #f8f9fa;  /* Blanco suave */
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
     color: #212529;
     margin: 0;
 }
 
-/* Títulos */
+/* ========== TITULOS ========== */
+
 h1, h2 {
     font-family: 'Poppins', sans-serif;
     color: #4B70F5;
 }
 
-/* Subtítulos */
 h3, h4 {
     font-family: 'Open Sans', sans-serif;
     color: #212529;
 }
 
-/* Contenedores */
+/* ========== SIDEBAR ========== */
+
+.sidebar {
+    position: fixed;
+    width: 18%;
+    height: 100%;
+    background-color: #f0f6fc;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+    color: #1f4e79;
+}
+
+/* ========== NAV LINKS ========== */
+
+.nav-link {
+    display: block;
+    padding: 10px;
+    margin: 5px 0;
+    color: #1f4e79;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.nav-link:hover {
+    background-color: #d0e7ff;
+    color: #003f6b;
+}
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+
+.content {
+    margin-left: 20%;
+    padding: 30px;
+    background-color: #ffffff;
+    min-height: 100vh;
+}
+
+/* ========== CONTENEDORES ========== */
+
 .tab-content {
     background-color: white;
     padding: 25px;
@@ -29,7 +76,8 @@ h3, h4 {
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-/* Botones o elementos de acción */
+/* ========== BOTONES ========== */
+
 .button {
     background-color: #4B70F5;
     color: white;
@@ -42,4 +90,12 @@ h3, h4 {
 .button:hover {
     background-color: #3D3BF3;
     cursor: pointer;
+}
+
+/* ========== PIE DE PÁGINA O TEXTOS PEQUEÑOS ========== */
+
+.sidebar p {
+    font-size: 12px;
+    color: #555;
+    padding-top: 20px;
 }

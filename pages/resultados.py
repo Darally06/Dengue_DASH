@@ -1,36 +1,8 @@
-from dash import html, dcc, dash_table
-import pandas as pd
+from dash import html, dcc, Input, Output
+import plotly.express as px
 import os
 import json
 import plotly.io as pio
-
-def eda(df):
-    return html.Div([
-        html.Div([
-            dcc.Tabs([
-                dcc.Tab(label="Demograficas", children = [
-                    html.Div([
-                        html.P('Aqui van los graficos 1')
-                    ])
-                ]),
-                dcc.Tab(label="temporal", children = [
-                    html.Div([
-                        html.P('Aqui van los graficos 1')
-                    ])
-                ]),
-                dcc.Tab(label="Geograficas", children = [
-                    html.Div([
-                        html.P('Aqui van los graficos 1')
-                    ])
-                ]),
-                dcc.Tab(label="clinicas", children = [
-                    html.Div([
-                        html.P('Aqui van los graficos 1')
-                    ])
-                ]),
-            ], vertical=True)
-        ], style={'margin-left': '20%', 'width': '80%', 'padding': '20px'})
-    ])
 
 def mostrar_json(path_json):
     if not os.path.exists(path_json):
@@ -43,12 +15,23 @@ def mostrar_json(path_json):
 def layout(df):
     return html.Div([
         dcc.Tabs([
-
-            # Pestaña 1: EDA
             dcc.Tab(label='Análisis Exploratorio de Datos', children=[
-               eda(df)
+                html.Div([
+                    dcc.Dropdown(
+                        id='eda-selector',
+                        options=[
+                            {'label': 'Demográficas', 'value': 'Demográficas'},
+                            {'label': 'Temporales', 'value': 'Temporales'},
+                            {'label': 'Geográficas', 'value': 'Geográficas'},
+                            {'label': 'Clínicas', 'value': 'Clínicas'}
+                        ],
+                        value='Demográficas',
+                        clearable=False,
+                        style={'width': '50%', 'marginBottom': '20px'}
+                    ),
+                    html.Div(id='eda-content')
+                ])
             ]),
-
             # Pestaña 2: Modelo
             dcc.Tab(label='Visualización del modelo', children=[
                 html.Div([
@@ -75,8 +58,6 @@ def layout(df):
                     'display': 'flex','flexWrap': 'wrap','justifyContent': 'space-around','alignItems': 'flex-start'
                 }),
             ]),
-
-            # Pestaña 3: indicadores
             dcc.Tab(label='Indicadores del modelo', children=[
                 html.Div([
                     html.Div([
@@ -98,11 +79,8 @@ def layout(df):
                     'alignItems': 'flex-start'
                 }),
             ]),
-
-
-            # Pestaña 4: Limitaciones
             dcc.Tab(label='Limitaciones', children=[
-                html.Div('Aqui', style={'marginTop': '20px'})
+                html.Div('Aquí', style={'marginTop': '20px'})
             ]),
         ])
     ])

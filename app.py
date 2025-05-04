@@ -1,11 +1,12 @@
 # ARCHIVO GENERAL
 
 ## Importar librerias
+import psycopg2
 import dash
 from dash import dcc, html
-import pandas as pd 
-import psycopg2
-from pages import metodos, resultados, text_tabs, change_df
+import pandas as pd
+from dash.dependencies import Input, Output
+from pages import metodos, resultados, text_tabs, change_df, callbacks
 
 ## Conexion a la base de datos
 conexion = psycopg2.connect(
@@ -26,32 +27,60 @@ df.to_csv("data/dengue.csv", index=False)
 # DASH
 # Diseño
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app.title = "Clasificación de Casos de Dengue"
+
+# Layout general con estilo moderno
 app.layout = html.Div([
-    html.H1("CLASIFICACIÓN DE CASOS DE DENGUE", style={'textAlign': 'center'}),
-    
-    dcc.Tabs([
-        dcc.Tab(label='Introducción', children=[
-            text_tabs.texto_tab1()
-        ],style={'font-weight': 'bold'}),
-        dcc.Tab(label='Contexto', children=[
-            text_tabs.texto_tab2()
-        ],style={'font-weight': 'bold'}),
-        dcc.Tab(label='Planteamiento del problema', children=[
-            text_tabs.texto_tab3()
-        ],style={'font-weight': 'bold'}),
-        dcc.Tab(label='Objetivos y justificación', children=[
-            text_tabs.texto_tab4()
-        ],style={'font-weight': 'bold'}),
-        dcc.Tab(label='Marco teórico', children=[
-            text_tabs.texto_tab5()
-        ],style={'font-weight': 'bold'}),
-        dcc.Tab(label='Metodología', children = metodos.layout(df),style={'font-weight': 'bold'}),
-        dcc.Tab(label='Resultados y análisis', children = resultados.layout(df),style={'font-weight': 'bold'}),
-        dcc.Tab(label='Conclusiones', children = [
-            text_tabs.texto_tab8()
-        ],style={'font-weight': 'bold'}),
-    ])
+    dcc.Location(id='url', refresh=False),
+
+    # Sidebar
+    html.Div([
+        html.H2("DENGUE APP", style={'textAlign': 'center', 'color': '#1f4e79'}),
+        html.Hr(),
+        dcc.Link('Introducción', href='/', className='nav-link'),
+        dcc.Link('Contexto', href='/contexto', className='nav-link'),
+        dcc.Link('Problema', href='/problema', className='nav-link'),
+        dcc.Link('Objetivos', href='/objetivos', className='nav-link'),
+        dcc.Link('Marco teórico', href='/teoria', className='nav-link'),
+        dcc.Link('Metodología', href='/metodologia', className='nav-link'),
+        dcc.Link('Resultados', href='/resultados', className='nav-link'),
+        dcc.Link('Conclusiones', href='/conclusiones', className='nav-link'),
+        html.Div([
+            html.P("Creado por Daniela Acuña, Daniella Guerra & Tawny Torres", style={'fontSize': '12px'}),
+            html.P("Datos: Portal Sivigila", style={'fontSize': '12px'})
+        ], style={'padding-top': '20px', 'color': '#555'})
+    ], className='sidebar'),
+
+    # Contenido dinámico
+    html.Div(id='page-content', className='content')
 ])
+
+# Callback de navegación
+@app.callback(
+    Output('page-content', 'children'),
+    Input('url', 'pathname')
+)
+def display_page(pathname):
+    if pathname == '/contexto':
+        return text_tabs.texto_tab2()
+    elif pathname == '/problema':
+        return text_tabs.texto_tab3()
+    elif pathname == '/objetivos':
+        return text_tabs.texto_tab4()
+    elif pathname == '/teoria':
+        return text_tabs.texto_tab5()
+    elif pathname == '/metodologia':
+        return metodos.layout(df)
+    elif pathname == '/resultados':
+        return resultados.layout(df)
+    elif pathname == '/conclusiones':
+        return text_tabs.texto_tab8()
+    else:
+        return text_tabs.texto_tab1()
+
+# Callbacks adicionales
+callbacks.register(app, df)
+
 
 if __name__ == '__main__':
     app.run(debug=True)

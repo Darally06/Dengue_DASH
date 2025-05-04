@@ -12,8 +12,8 @@ def ajustar_variables(df):
     df['EDAD_AJUSTADA'] = df['EDAD_AJUSTADA'].fillna(mediana_edad).astype('float64')
 
     # Convertir SEXO a variable numérica
-    df['SEXO'] = df['SEXO'].astype(str).str.strip()
-    df['SEXO_NUM'] = df['SEXO'].map({'F': 0, 'M': 1}).fillna(-1).astype('int64')
+    #df['SEXO'] = df['SEXO'].astype(str).str.strip()
+    #df['SEXO_NUM'] = df['SEXO'].map({'F': 0, 'M': 1}).fillna(-1).astype('int64')
 
     # Convertir variables a numéricas
     columnas_a_convertir = ["GP_MIGRANT", "GP_POBICFB", "GP_GESTAN",
