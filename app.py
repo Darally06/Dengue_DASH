@@ -29,21 +29,14 @@ df.to_csv("data/dengue.csv", index=False)
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
 app.title = "Clasificación de Casos de Dengue"
 
-# Layout general con estilo moderno
+# Layout general
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     # Sidebar
     html.Div([
         html.H2("DENGUE APP", style={'textAlign': 'center', 'color': '#4B70F5', 'fontFamily': 'Poppins'}),
         html.Hr(),
-        dcc.Link('Introducción', href='/', className='nav-link'),
-        dcc.Link('Contexto', href='/contexto', className='nav-link'),
-        dcc.Link('Problema', href='/problema', className='nav-link'),
-        dcc.Link('Objetivos', href='/objetivos', className='nav-link'),
-        dcc.Link('Marco teórico', href='/teoria', className='nav-link'),
-        dcc.Link('Metodología', href='/metodologia', className='nav-link'),
-        dcc.Link('Resultados', href='/resultados', className='nav-link'),
-        dcc.Link('Conclusiones', href='/conclusiones', className='nav-link'),
+        html.Div(id='sidebar-links'),  # Generado dinámicamente
         html.Div([
             html.P("Creado por Daniela Acuña, Daniella Guerra & Tawny Torres", style={'fontSize': '14px'}),
             html.P("Datos: Portal Sivigila", style={'fontSize': '14px'})
@@ -54,7 +47,7 @@ app.layout = html.Div([
     html.Div(id='page-content', className='content')
 ])
 
-# Callback de navegación
+# Callback de contenido principal
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname')
@@ -77,9 +70,30 @@ def display_page(pathname):
     else:
         return text_tabs.texto_tab1()
 
+# Callback para resaltar el enlace activo
+@app.callback(
+    Output('sidebar-links', 'children'),
+    Input('url', 'pathname')
+)
+def update_sidebar(pathname):
+    links = [
+        ('/', 'Introducción'),
+        ('/contexto', 'Contexto'),
+        ('/problema', 'Problema'),
+        ('/objetivos', 'Objetivos'),
+        ('/teoria', 'Marco teórico'),
+        ('/metodologia', 'Metodología'),
+        ('/resultados', 'Resultados'),
+        ('/conclusiones', 'Conclusiones'),
+    ]
+
+    return [
+        dcc.Link(text, href=link, className='nav-link active' if pathname == link else 'nav-link')
+        for link, text in links
+    ]
+
 # Callbacks adicionales
 callbacks.register(app, df)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
