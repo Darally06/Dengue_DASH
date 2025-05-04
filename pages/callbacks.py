@@ -168,7 +168,7 @@ def register(app, df):
         elif selected_group == 'Geográficas':
         
             # Cargar archivo de población por departamento
-            deptos = pd.read_csv("data\poblacion_departamentos_colombia_2018.csv")
+            deptos = pd.read_csv(r"data\poblacion_departamentos_colombia_2018.csv")
             deptos.rename(columns={"Población Censada 2018": "Poblacion"}, inplace=True)
             deptos["DEPARTAMENTO"] = deptos["DEPARTAMENTO"].apply(lambda x: unidecode(x.upper()))
             deptos["DEPARTAMENTO"] = deptos["DEPARTAMENTO"].replace({
@@ -184,7 +184,7 @@ def register(app, df):
             df_final = df_final.sort_values(by="Densidad_Casos", ascending=False)
 
             # Cargar GeoJSON
-            with open("data\Mapa_Depto.geojson", encoding="utf-8") as f:
+            with open(r"data\Mapa_Depto.geojson", encoding="utf-8") as f:
                 geojson = json.load(f)
 
             # Asignar densidad y casos a cada feature

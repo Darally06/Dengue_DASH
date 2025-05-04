@@ -1,25 +1,19 @@
 # ARCHIVO GENERAL
 
 ## Importar librerias
-import psycopg2
+from sqlalchemy import create_engine
 import dash
 from dash import dcc, html
 import pandas as pd
 from dash.dependencies import Input, Output
 from pages import metodos, resultados, text_tabs, change_df, callbacks
 
-## Conexion a la base de datos
-conexion = psycopg2.connect(
-    host="localhost",
-    database="data_dengue",
-    user="postgres",
-    password="Darally",
-    port="5432"
-)
+## Conexión a la base de datos con SQLAlchemy
+engine = create_engine("postgresql+psycopg2://postgres:Darally@localhost:5432/data_dengue")
+
 #Holis
 query = "SELECT * FROM base_dengue_raw;"
-df = pd.read_sql(query, conexion)
-conexion.close()
+df = pd.read_sql(query, engine)
 
 df = change_df.ajustar_variables(df)
 df.to_csv("data/dengue.csv", index=False)
