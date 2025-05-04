@@ -320,15 +320,17 @@ def register(app, df):
                 df_tipo_caso,
                 x="ANO",
                 y="Frecuencia",
+                color ="TIP_CAS",
                 markers=True,
                 title="Tipo de Caso por Año",
                 labels={"ANO": "Año", "Frecuencia": "Número de Casos", "TIP_CAS": "Tipo de Caso"},
             )
-            fig_tip_cas.update_traces(line=dict(color="#1b4af2"))
+            fig_tip_cas.update_traces(marker=dict(size=6))  # opcional, tamaño de los puntos
             fig_tip_cas.update_layout(
                 template="plotly_white",
                 hovermode="x unified",
-                legend_title="Tipo de Caso"
+                legend_title="Tipo de Caso",
+                colorway=["dodgerblue", "mediumblue"]  # <--- Color por línea en el orden de los valores únicos de TIP_CAS
             )
 
             # 3. HOSPITALIZADOS POR AÑO Y SEXO (Línea)
