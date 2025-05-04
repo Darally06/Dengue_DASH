@@ -131,7 +131,6 @@ def register(app, df):
             )
 
             # Gráfico 2: Casos confirmados por año (convertido a líneas)
-            df["CONFIRMADOS"] = df["CONFIRMADOS"].map({0: "No", 1: "Sí"})
             df_conf = df.groupby(["ANO", "CONFIRMADOS"]).size().reset_index(name="Frecuencia")
 
             fig_cf = px.line(
