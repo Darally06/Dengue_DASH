@@ -1,26 +1,14 @@
 # ARCHIVO GENERAL
 
 ## Importar librerias
-from sqlalchemy import create_engine
 import dash
 from dash import dcc, html
 import pandas as pd
 from dash.dependencies import Input, Output
 from pages import metodos, resultados, text_tabs, change_df, callbacks
-import os
 
-## Conexión a la base de datos con SQLAlchemy
-url = os.getenv("postgresql://data_dengue_user:g9ly4FnXRGncQvn4EGKsuellLTQcYG66@dpg-d0bvjtbuibrs73dmtabg-a.oregon-postgres.render.com/data_dengue?sslmode=require")
-if not url:
-    raise RuntimeError("No está definida la variable de entorno DATABASE_URL")
-engine = create_engine(url)
 
-#Holis
-query = "SELECT * FROM base_dengue_raw;"
-df = pd.read_sql(query, engine)
-print(df.head())
-df = change_df.ajustar_variables(df)
-df.to_csv("data/dengue.csv", index=False)
+df = pd.read_csv("data/dengue.csv")
 
 # DASH
 # Diseño
