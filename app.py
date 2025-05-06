@@ -12,7 +12,9 @@ df = pd.read_csv("data/dengue.csv")
 
 # DASH
 # Diseño
+
 app = dash.Dash(__name__, suppress_callback_exceptions=True)
+server = app.server
 app.title = "Clasificación de Casos de Dengue"
 
 # Layout general con estilo moderno
@@ -69,4 +71,4 @@ callbacks.register(app, df)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run_server(debug=True)
