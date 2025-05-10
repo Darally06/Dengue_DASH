@@ -5,10 +5,10 @@ import dash
 from dash import dcc, html
 import pandas as pd
 from dash.dependencies import Input, Output
-from pages import metodos, resultados, text_tabs, change_df, callbacks
+from pages import metodos, resultados, text_tabs, callbacks
 
 
-df = pd.read_csv("data/dengue.csv")
+df = pd.read_csv("data/registros_dengue.csv")
 
 # DASH
 # Diseño
