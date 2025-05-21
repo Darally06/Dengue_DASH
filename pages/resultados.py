@@ -3,14 +3,19 @@ import plotly.express as px
 import os
 import json
 import plotly.io as pio
+import requests
 
-def mostrar_json(path_json):
-    if not os.path.exists(path_json):
-        return html.Div("Archivo no encontrado")
-    with open(path_json, 'r') as f:
-        fig_dict = json.load(f)
-    fig = pio.from_json(json.dumps(fig_dict))
-    return dcc.Graph(figure=fig)
+def cargar_grafico(url_json):
+    try:
+        response = requests.get(url_json)
+        response.raise_for_status()  # Lanza error si la URL no es válida
+
+        fig_dict = response.json()
+        fig = pio.from_json(json.dumps(fig_dict))  # Convertir dict a JSON string
+
+        return dcc.Graph(figure=fig)
+    except Exception as e:
+        return html.Div(f"⚠️ Error al cargar el gráfico: {str(e)}")
 
 def layout(df):
     return html.Div([
@@ -37,22 +42,22 @@ def layout(df):
                 html.Div([
                     html.Div([
                         html.H4("Curva ROC",style={'textAlign': 'center'}),
-                        mostrar_json(r"pages\resultados\graficas\ROC_AUC.json")
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/ROC_AUC.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                     
                     html.Div([
                         html.H4("Curva Precision-Recall",style={'textAlign': 'center'}),
-                        mostrar_json(r"pages\resultados\graficas\precision_recall_curve.json")
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/precision_recall_curve.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                     
                     html.Div([
-                        html.H4("Importancia de características",style={'textAlign': 'center'}),
-                        mostrar_json(r"pages\resultados\graficas\feat_importance.json")
+                        html.H4("Importancia de características (Random Forest)",style={'textAlign': 'center'}),
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_rf.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                     
                     html.Div([
-                        html.H4("Explicación LIME",style={'textAlign': 'center'}),
-                        mostrar_json(r"pages\resultados\graficas\lime.json"),
+                        html.H4("Importancia de características (Random Forest)",style={'textAlign': 'center'}),
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_xgb.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                 ], style={
                     'display': 'flex','flexWrap': 'wrap','justifyContent': 'space-around','alignItems': 'flex-start'
@@ -62,15 +67,19 @@ def layout(df):
                 html.Div([
                     html.Div([
                         html.H4("Matriz de Confusión", style={'textAlign': 'center'}),
-                        mostrar_json(r"pages\resultados\graficas\matriz_confusion.json"),
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/matriz_confusion.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
 
                     html.Div([
                         html.H4("Reporte de Clasificación", style={'textAlign': 'center'}),
                         html.Pre(
-                            open(r"pages\resultados\class_report.txt").read(),
+                            open(r"pages\class_report.txt").read(),
                             style={'whiteSpace': 'pre-wrap'}
                         )
+                    ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
+                    html.Div([
+                        html.H4("Importancia de características", style={'textAlign': 'center'}),
+                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/lime_SD-GBClassifier_1000.json"),
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                 ], style={
                     'display': 'flex',

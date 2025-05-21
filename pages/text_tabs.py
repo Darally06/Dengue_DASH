@@ -4,16 +4,17 @@ from dash import html
 def texto_tab1():
     return html.Div([
         html.H2('Introducción', style={'color': '#4B70F5', 'fontFamily': 'Poppins'}),
-        html.P('El dengue es una enfermedad viral transmitida por mosquitos que representa un importante problema de salud pública en Colombia.', 
-               style={'fontFamily': 'Lato', 'fontSize': '18px'}),
-        html.P('A lo largo de los últimos años, el país ha experimentado múltiples brotes que han afectado tanto zonas urbanas como rurales.', 
-               style={'fontFamily': 'Lato', 'fontSize': '18px'}),
-        html.H4('Objetivo del análisis', style={'color': '#3D3BF3', 'fontFamily': 'Open Sans', 'marginTop': '30px'}),
-        html.P('El propósito de este dashboard es explorar, visualizar y entender la distribución y características de los casos de dengue en Colombia, '
-               'utilizando datos históricos y demográficos para identificar patrones relevantes.', 
-               style={'fontFamily': 'Lato', 'fontSize': '18px'}),
-        html.P('Aquí se presenta una visión general del contexto de la problemática, el análisis realizado y los hallazgos encontrados.',
-                'De manera resumida, indicar lo que se pretende lograr con el proyecto')
+        html.P('El dengue es una enfermedad viral aguda transmitida por mosquitos infectados, ' \
+        'considerada una de las principales amenazas para la salud pública en regiones tropicales'\
+        'y subtropicales, afectando a millones de personas anualmente (OMS, 2023).',
+        style={'fontFamily': 'Lato', 'fontSize': '18px'}),
+        html.P('En Colombia, su prevención y control son prioritarios debido a la presencia del vector' \
+        ' y las condiciones climáticas favorables para su propagación. ' \
+        'Sin embargo, no todos los casos reportados han sido confirmados mediante pruebas diagnosticas',
+        style={'fontFamily': 'Lato', 'fontSize': '18px'}),
+        html.P('Los resultados del análisis propuesto pueden contribuir a mejorar la estimación de casos futuros, ' \
+        'optimizar la toma de decisiones en salud pública y fortalecer las estrategias de prevención',
+        style={'fontFamily': 'Lato', 'fontSize': '18px'}),
     ])
 
 def texto_tab2():

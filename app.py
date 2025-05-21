@@ -8,7 +8,8 @@ from dash.dependencies import Input, Output
 from pages import metodos, resultados, text_tabs, callbacks
 
 
-df = pd.read_csv("data/registros_dengue.csv")
+url = "https://drive.google.com/uc?export=download&id=14KEzIATupj4qrZU3ZGaHPsnzPoR2qiVJ"
+df = pd.read_csv(url) 
 
 # DASH
 # Diseño
@@ -71,4 +72,4 @@ callbacks.register(app, df)
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run(debug=True)
