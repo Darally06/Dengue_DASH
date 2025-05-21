@@ -19,6 +19,7 @@ def cargar_grafico(url_json):
 
 def layout(df):
     return html.Div([
+        dcc.Store(id='store-df', data=df.to_dict('records')),
         dcc.Tabs([
             dcc.Tab(label='Análisis Exploratorio de Datos', children=[
                 html.Div([
@@ -32,7 +33,7 @@ def layout(df):
                         ],
                         value='Demográficas',
                         clearable=False,
-                        style={'width': '50%', 'marginBottom': '20px'}
+                        style={'width': '60%', 'marginBottom': '20px'}
                     ),
                     html.Div(id='eda-content')
                 ])

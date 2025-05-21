@@ -1,6 +1,6 @@
 from dash import html, dcc
 
-def layout(df):
+def layout():
     return html.Div([
         dcc.Tabs([
             dcc.Tab(label='Definición del problema', children=[

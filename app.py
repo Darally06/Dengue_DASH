@@ -7,10 +7,6 @@ import pandas as pd
 from dash.dependencies import Input, Output
 from pages import metodos, resultados, text_tabs, callbacks
 
-
-url = "https://drive.google.com/uc?export=download&id=14KEzIATupj4qrZU3ZGaHPsnzPoR2qiVJ"
-df = pd.read_csv(url) 
-
 # DASH
 # Diseño
 
@@ -50,6 +46,10 @@ app.layout = html.Div([
     Input('url', 'pathname')
 )
 def display_page(pathname):
+    if pathname in ['/resultados']:
+        url = "https://drive.google.com/uc?export=download&id=14KEzIATupj4qrZU3ZGaHPsnzPoR2qiVJ"
+        df = pd.read_csv(url)
+
     if pathname == '/contexto':
         return text_tabs.texto_tab2()
     elif pathname == '/problema':
@@ -59,7 +59,7 @@ def display_page(pathname):
     elif pathname == '/teoria':
         return text_tabs.texto_tab5()
     elif pathname == '/metodologia':
-        return metodos.layout(df)
+        return metodos.layout()
     elif pathname == '/resultados':
         return resultados.layout(df)
     elif pathname == '/conclusiones':
@@ -68,7 +68,7 @@ def display_page(pathname):
         return text_tabs.texto_tab1()
 
 # Callbacks adicionales
-callbacks.register(app, df)
+callbacks.register(app)
 
 
 if __name__ == '__main__':
