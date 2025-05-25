@@ -1,6 +1,4 @@
-from dash import html, dcc, Input, Output
-import plotly.express as px
-import os
+from dash import html, dcc
 import json
 import plotly.io as pio
 import requests

@@ -1,8 +1,5 @@
-from dash import html, dcc
+from dash import html
 from dash.dependencies import Input, Output
-import pandas as pd
-from unidecode import unidecode
-import plotly.graph_objects as go
 from pages.resultados import cargar_grafico
 
 url_area = "https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/fig_area.json"

@@ -3,10 +3,8 @@
 ## Importar librerias
 import dash
 from dash import dcc, html
-import pandas as pd
 from dash.dependencies import Input, Output
 from pages import metodos, resultados, text_tabs, callbacks
-import gdown 
 
 # DASH
 # Diseño
