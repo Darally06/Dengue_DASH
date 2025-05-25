@@ -17,9 +17,8 @@ def cargar_grafico(url_json):
     except Exception as e:
         return html.Div(f"⚠️ Error al cargar el gráfico: {str(e)}")
 
-def layout(df):
+def layout():
     return html.Div([
-        dcc.Store(id='store-df', data=df.to_dict('records')),
         dcc.Tabs([
             dcc.Tab(label='Análisis Exploratorio de Datos', children=[
                 html.Div([
@@ -42,28 +41,42 @@ def layout(df):
             dcc.Tab(label='Visualización del modelo', children=[
                 html.Div([
                     html.Div([
-                        html.H4("Curva ROC",style={'textAlign': 'center'}),
-                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/ROC_AUC.json"),
+                        html.H4("Curva ROC", style={'textAlign': 'center'}),
+                        dcc.Loading(
+                            children=cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/ROC_AUC.json"),
+                            type="default"
+                        )
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
-                    
+
                     html.Div([
-                        html.H4("Curva Precision-Recall",style={'textAlign': 'center'}),
-                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/precision_recall_curve.json"),
+                        html.H4("Curva Precision-Recall", style={'textAlign': 'center'}),
+                        dcc.Loading(
+                            children=cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/precision_recall_curve.json"),
+                            type="default"
+                        )
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
-                    
+
                     html.Div([
-                        html.H4("Importancia de características (Random Forest)",style={'textAlign': 'center'}),
-                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_rf.json"),
+                        html.H4("Importancia de características (Random Forest)", style={'textAlign': 'center'}),
+                        dcc.Loading(
+                            children=cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_rf.json"),
+                            type="default"
+                        )
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
-                    
+
                     html.Div([
-                        html.H4("Importancia de características (Random Forest)",style={'textAlign': 'center'}),
-                        cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_xgb.json"),
+                        html.H4("Importancia de características (XGBoost)", style={'textAlign': 'center'}),
+                        dcc.Loading(
+                            children=cargar_grafico("https://raw.githubusercontent.com/Darally06/Resultados_json/refs/heads/main/jsons/base_feat_importance_xgb.json"),
+                            type="default"
+                        )
                     ], style={'width': '48%', 'padding': '1%', 'boxSizing': 'border-box'}),
                 ], style={
-                    'display': 'flex','flexWrap': 'wrap','justifyContent': 'space-around','alignItems': 'flex-start'
+                    'display': 'flex', 'flexWrap': 'wrap',
+                    'justifyContent': 'space-around', 'alignItems': 'flex-start'
                 }),
             ]),
+
             dcc.Tab(label='Indicadores del modelo', children=[
                 html.Div([
                     html.Div([
