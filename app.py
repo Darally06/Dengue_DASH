@@ -4,12 +4,12 @@
 import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
-from pages import metodos, resultados, text_tabs, callbacks
+from pages import metodos, resultados, text_tabs 
 
 # DASH
 # Diseño
 
-app = dash.Dash(__name__, suppress_callback_exceptions=True)
+app = dash.Dash(__name__, suppress_callback_exceptions=True, external_stylesheets=["/assets/estilo.css"])
 server = app.server
 app.title = "Clasificación de Casos de Dengue"
 
@@ -31,7 +31,7 @@ app.layout = html.Div([
         dcc.Link('Conclusiones', href='/conclusiones', className='nav-link'),
         html.Div([
             html.P("Creado por Daniela Acuña, Daniella Guerra & Tawny Torres", style={'fontSize': '12px'}),
-            html.P("Datos: Portal Sivigila", style={'fontSize': '12px'})
+            html.P("Datos: Portal SIVIGILA", style={'fontSize': '12px'})
         ], style={'padding-top': '20px', 'color': '#555'})
     ], className='sidebar'),
 
@@ -39,11 +39,14 @@ app.layout = html.Div([
     html.Div(id='page-content', className='content')
 ])
 
+resultados.register_callbacks(app)
+
 # Callback de navegación
 @app.callback(
     Output('page-content', 'children'),
     Input('url', 'pathname')
 )
+
 def display_page(pathname):
 
     if pathname == '/contexto':
@@ -62,10 +65,6 @@ def display_page(pathname):
         return text_tabs.texto_tab8()
     else:
         return text_tabs.texto_tab1()
-
-# Callbacks adicionales
-callbacks.register(app)
-
 
 if __name__ == '__main__':
     app.run(debug=True)
