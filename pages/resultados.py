@@ -107,15 +107,13 @@ def layout():
             # Pestaña 4: Limitaciones
             dcc.Tab(label='Limitaciones', children=[
                 html.Div([
-                    html.H4("Limitaciones del modelo", style={'textAlign': 'center'}),
+                    html.H4("Limitaciones del modelo", style={'color': '#4B70F5', 'fontFamily': 'Poppins', 'fontSize': '30px'}),
                     html.Div([
                         html.Ul([
-                            html.Li("Falta de variables: no se cuentan con registros record clínicos " \
-                            "que permintan realizar análisis más profundos"),
-                            html.Li("Falsos positivos: Aunque se redujo notablemente en comparación con " \
-                            "los otros modelos, obtener 29.7% sigue siendo alto"),
-                        ], style={'fontFamily': 'Lato', 'fontSize': '18px', 'lineHeight': '1.6'})
-                    ], style={'width': '50%', 'float': 'right', 'paddingRight': '2%'})
+                            html.Li("🔹 Falta de variables: no se cuentan con registros record clínicos que permitan realizar análisis más profundos"),
+                            html.Li("🔹 Falsos positivos: Aunque se redujo notablemente en comparación con los otros modelos, obtener 29.7% sigue siendo alto"),
+                        ], style={'fontFamily': 'Century Gothic', 'fontSize': '24px','listStyleType': 'none','paddingLeft': '0px','lineHeight': '1.8'}),
+                    ])
                 ])
             ])
         ])

@@ -108,4 +108,5 @@ h3, h4 {
 /*Links*/
 .nav-link {
     color: #4B70F5; /* Color nuevo para los enlaces */
+    font-size: 20px;
 }

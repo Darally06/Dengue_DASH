@@ -19,7 +19,7 @@ app.layout = html.Div([
 
     # Sidebar
     html.Div([
-        html.H2("DENGUE APP", style={'textAlign': 'center', 'color': '#1f4e79'}),
+        html.H2("DENGUE APP", style={'textAlign': 'center', 'color': '#1f4e79', 'fontSize': '36px'}),
         html.Hr(),
         dcc.Link('Introducción', href='/', className='nav-link'),
         dcc.Link('Contexto', href='/contexto', className='nav-link'),
@@ -30,9 +30,9 @@ app.layout = html.Div([
         dcc.Link('Resultados', href='/resultados', className='nav-link'),
         dcc.Link('Conclusiones', href='/conclusiones', className='nav-link'),
         html.Div([
-            html.P("Creado por Daniela Acuña, Daniella Guerra & Tawny Torres", style={'fontSize': '12px'}),
-            html.P("Datos: Portal SIVIGILA", style={'fontSize': '12px'})
-        ], style={'padding-top': '20px', 'color': '#555'})
+            html.P("Creado por Daniela Acuña, Daniella Guerra & Tawny Torres", style={'fontSize': '16px'}),
+            html.P("Datos: Portal SIVIGILA", style={'fontSize': '16px'})
+        ], style={'padding-top': '24px', 'color': '#555'})
     ], className='sidebar'),
 
     # Contenido dinámico
